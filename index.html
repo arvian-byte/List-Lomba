@@ -197,7 +197,7 @@
 
         table {
             width: 100%;
-            border-collapse: collapse; /* Kembali menggunakan mode collapse agar garis tabel rapi */
+            border-collapse: collapse; /* MENGUNCI GARIS AGAR TIDAK PATAH */
             white-space: nowrap;
         }
 
@@ -206,6 +206,7 @@
             text-align: left;
             border-bottom: 1px solid var(--border-color);
             font-size: 1.05em;
+            vertical-align: middle; /* Memastikan isi tabel rata tengah */
         }
 
         th {
@@ -216,6 +217,7 @@
             top: 0;
             text-transform: uppercase;
             background-color: #0f172a;
+            z-index: 2; /* Agar header tidak tertimpa baris tabel saat di-scroll ke bawah */
         }
 
         th:hover {
@@ -235,8 +237,8 @@
             font-weight: 900;
             font-size: 1.1em;
             text-shadow: 0 0 5px rgba(250, 204, 21, 0.3);
-            white-space: normal; /* Tetap melipat teks ke bawah jika kepanjangan */
-            min-width: 220px; /* Lebar kolom nama lomba agar ideal di laptop maupun HP */
+            white-space: normal;
+            min-width: 220px;
         }
 
         td.lomba-deadline {
@@ -275,13 +277,12 @@
             pointer-events: none;
         }
 
+        /* --- PERBAIKAN KOLOM AKSI --- */
         .action-cell {
             white-space: nowrap;
-            vertical-align: middle;
         }
 
-        .btn-edit-item {
-            background-color: var(--btn-edit);
+        .btn-edit-item, .btn-delete-item {
             color: white;
             border: none;
             padding: 8px 12px;
@@ -289,7 +290,12 @@
             font-weight: bold;
             cursor: pointer;
             font-size: 0.9em;
-            margin-right: 5px;
+            display: inline-block; /* Memastikan tombol bersikap normal */
+        }
+
+        .btn-edit-item {
+            background-color: var(--btn-edit);
+            margin-right: 5px; /* Memberikan jarak antar tombol dengan aman */
         }
 
         .btn-edit-item:hover {
@@ -298,13 +304,6 @@
 
         .btn-delete-item {
             background-color: var(--btn-delete);
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 0.9em;
         }
 
         .btn-delete-item:hover {
